@@ -1,0 +1,33 @@
+import sys
+from pygeocoder import Geocoder
+from pygeolib import GeocoderError
+import pygeoip
+from geopy.geocoders import Nominatim
+
+# try:
+#   address = Geocoder.geocode("1 Rugby Street, Newtown, Wellington 6021, New Zealand")
+#   print (address.coordinates)
+# #.join(sys.argv[1:]))
+# except GeocoderError:
+#   print ("The address entered could not be geocoded")
+#   sys.exit(1)
+#
+# if not address.valid_address:
+#   print ("The address entered is not valid, but we did get some info")
+#
+# print ("address.valid_address: ", address.valid_address)
+# print ("address.street_number: ", address.street_number)
+# print ("address.route: ", address.route)
+# print ("address.sublocality: ", address.sublocality)
+# print ("address.locality: ", address.locality)
+# print ("address.administrative_area_level_1: ", address.administrative_area_level_1)
+# print ("address.country: ", address.country)
+# print ("address.postal_code: ", address.postal_code)
+# print ("address.coordinates: ", address.coordinates)
+# print ("address.formatted_address: ", address.formatted_address)
+
+
+geolocator = Nominatim()
+location = geolocator.geocode("2485, AUGUSTINE DRIVE,SANTA CLARA,CA,95054")
+print(location.address)
+print((location.latitude, location.longitude))
