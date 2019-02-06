@@ -1,0 +1,61 @@
+
+from bs4 import BeautifulSoup
+import requests
+import pandas as pd
+import time
+
+df = pd.DataFrame(columns=["Website", "Facebook", "linkedin","Twitter","youtube"])
+path = "D:/Ramesh/Company.xlsx"
+output = "D:/Ramesh/Social_Media_links.xlsx"
+# urlsToSearch = ["http://www.024pharma.com"]
+urlsToSearch = open('website.txt', 'r')
+final =[]
+# columns = ['url','fb_links','li_links','tw_links','yt_links']
+# for url in urlsToSearch:
+    # url = url.strip()
+    # print (url.strip())
+
+try:
+    url = 'http://www.1800flowers.com'
+    r = requests.get(url)
+    # tw_links = []
+    # fb_links = []
+    # li_links = []
+    # yt_links = []
+
+    soup = BeautifulSoup(r.text, 'html.parser')
+    for link in soup.find_all('a', href = True):
+        a = [link['href']]
+        print(a)#only get href
+    # print(all_links)
+        final.append(a)
+    # for link in all_links:
+    #     if "twitter.com" in link:
+    #         tw_links = link
+    #         a =[url, None, None, tw_links, None]
+    #         final.append(a)
+    #     elif "facebook.com" in link:
+    #         fb_links = link
+    #         a = [url, fb_links, None, None, None]
+    #         final.append(a)
+    #     elif "linkedin.com" in link:
+    #         li_links =link
+    #         a = [url, None, li_links, None, None]
+    #         final.append(a)
+    #     elif "youtube.com" in link:
+    #         yt_links = link
+    #         a = [url, None, None, None, yt_links]
+    #         final.append(a)
+    #     else:
+    #         pass
+        # a =[url,fb_links,li_links,tw_links,yt_links]
+        # df.loc[df.shape[0]] =  #Add row to end of df
+
+
+except Exception as e:
+    print(e)
+
+pd.DataFrame(final).to_excel(output, index=False)
+
+
+
